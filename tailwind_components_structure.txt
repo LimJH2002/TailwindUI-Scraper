@@ -1,0 +1,249 @@
+
+Marketing
+==================================================
+
+Page Sections
+----------------------------------------
+1. Hero Sections
+   URL: https://tailwindui.com/components/marketing/sections/heroes
+2. Feature Sections
+   URL: https://tailwindui.com/components/marketing/sections/feature-sections
+3. CTA Sections
+   URL: https://tailwindui.com/components/marketing/sections/cta-sections
+4. Bento Grids
+   URL: https://tailwindui.com/components/marketing/sections/bento-grids
+5. Pricing Sections
+   URL: https://tailwindui.com/components/marketing/sections/pricing
+6. Header Sections
+   URL: https://tailwindui.com/components/marketing/sections/header
+7. Newsletter Sections
+   URL: https://tailwindui.com/components/marketing/sections/newsletter-sections
+8. Stats
+   URL: https://tailwindui.com/components/marketing/sections/stats-sections
+9. Testimonials
+   URL: https://tailwindui.com/components/marketing/sections/testimonials
+10. Blog Sections
+   URL: https://tailwindui.com/components/marketing/sections/blog-sections
+11. Contact Sections
+   URL: https://tailwindui.com/components/marketing/sections/contact-sections
+12. Team Sections
+   URL: https://tailwindui.com/components/marketing/sections/team-sections
+13. Content Sections
+   URL: https://tailwindui.com/components/marketing/sections/content-sections
+14. Logo Clouds
+   URL: https://tailwindui.com/components/marketing/sections/logo-clouds
+15. FAQs
+   URL: https://tailwindui.com/components/marketing/sections/faq-sections
+16. Footers
+   URL: https://tailwindui.com/components/marketing/sections/footers
+
+Elements
+----------------------------------------
+1. Headers
+   URL: https://tailwindui.com/components/marketing/elements/headers
+2. Flyout Menus
+   URL: https://tailwindui.com/components/marketing/elements/flyout-menus
+3. Banners
+   URL: https://tailwindui.com/components/marketing/elements/banners
+
+Feedback
+----------------------------------------
+1. 404 Pages
+   URL: https://tailwindui.com/components/marketing/feedback/404-pages
+
+Page Examples
+----------------------------------------
+1. Landing Pages
+   URL: https://tailwindui.com/components/marketing/page-examples/landing-pages
+2. Pricing Pages
+   URL: https://tailwindui.com/components/marketing/page-examples/pricing-pages
+3. About Pages
+   URL: https://tailwindui.com/components/marketing/page-examples/about-pages
+
+
+Application UI
+==================================================
+
+Application Shells
+----------------------------------------
+1. Stacked Layouts
+   URL: https://tailwindui.com/components/application-ui/application-shells/stacked
+2. Sidebar Layouts
+   URL: https://tailwindui.com/components/application-ui/application-shells/sidebar
+3. Multi-Column Layouts
+   URL: https://tailwindui.com/components/application-ui/application-shells/multi-column
+
+Headings
+----------------------------------------
+1. Page Headings
+   URL: https://tailwindui.com/components/application-ui/headings/page-headings
+2. Card Headings
+   URL: https://tailwindui.com/components/application-ui/headings/card-headings
+3. Section Headings
+   URL: https://tailwindui.com/components/application-ui/headings/section-headings
+
+Data Display
+----------------------------------------
+1. Description Lists
+   URL: https://tailwindui.com/components/application-ui/data-display/description-lists
+2. Stats
+   URL: https://tailwindui.com/components/application-ui/data-display/stats
+3. Calendars
+   URL: https://tailwindui.com/components/application-ui/data-display/calendars
+
+Lists
+----------------------------------------
+1. Stacked Lists
+   URL: https://tailwindui.com/components/application-ui/lists/stacked-lists
+2. Tables
+   URL: https://tailwindui.com/components/application-ui/lists/tables
+3. Grid Lists
+   URL: https://tailwindui.com/components/application-ui/lists/grid-lists
+4. Feeds
+   URL: https://tailwindui.com/components/application-ui/lists/feeds
+
+Forms
+----------------------------------------
+1. Form Layouts
+   URL: https://tailwindui.com/components/application-ui/forms/form-layouts
+2. Input Groups
+   URL: https://tailwindui.com/components/application-ui/forms/input-groups
+3. Select Menus
+   URL: https://tailwindui.com/components/application-ui/forms/select-menus
+4. Sign-in and Registration
+   URL: https://tailwindui.com/components/application-ui/forms/sign-in-forms
+5. Textareas
+   URL: https://tailwindui.com/components/application-ui/forms/textareas
+6. Radio Groups
+   URL: https://tailwindui.com/components/application-ui/forms/radio-groups
+7. Checkboxes
+   URL: https://tailwindui.com/components/application-ui/forms/checkboxes
+8. Toggles
+   URL: https://tailwindui.com/components/application-ui/forms/toggles
+9. Action Panels
+   URL: https://tailwindui.com/components/application-ui/forms/action-panels
+10. Comboboxes
+   URL: https://tailwindui.com/components/application-ui/forms/comboboxes
+
+Feedback
+----------------------------------------
+1. Alerts
+   URL: https://tailwindui.com/components/application-ui/feedback/alerts
+2. Empty States
+   URL: https://tailwindui.com/components/application-ui/feedback/empty-states
+
+Navigation
+----------------------------------------
+1. Navbars
+   URL: https://tailwindui.com/components/application-ui/navigation/navbars
+2. Pagination
+   URL: https://tailwindui.com/components/application-ui/navigation/pagination
+3. Tabs
+   URL: https://tailwindui.com/components/application-ui/navigation/tabs
+4. Vertical Navigation
+   URL: https://tailwindui.com/components/application-ui/navigation/vertical-navigation
+5. Sidebar Navigation
+   URL: https://tailwindui.com/components/application-ui/navigation/sidebar-navigation
+6. Breadcrumbs
+   URL: https://tailwindui.com/components/application-ui/navigation/breadcrumbs
+7. Progress Bars
+   URL: https://tailwindui.com/components/application-ui/navigation/progress-bars
+8. Command Palettes
+   URL: https://tailwindui.com/components/application-ui/navigation/command-palettes
+
+Overlays
+----------------------------------------
+1. Modal Dialogs
+   URL: https://tailwindui.com/components/application-ui/overlays/modal-dialogs
+2. Drawers
+   URL: https://tailwindui.com/components/application-ui/overlays/drawers
+3. Notifications
+   URL: https://tailwindui.com/components/application-ui/overlays/notifications
+
+Elements
+----------------------------------------
+1. Avatars
+   URL: https://tailwindui.com/components/application-ui/elements/avatars
+2. Badges
+   URL: https://tailwindui.com/components/application-ui/elements/badges
+3. Dropdowns
+   URL: https://tailwindui.com/components/application-ui/elements/dropdowns
+4. Buttons
+   URL: https://tailwindui.com/components/application-ui/elements/buttons
+5. Button Groups
+   URL: https://tailwindui.com/components/application-ui/elements/button-groups
+
+Layout
+----------------------------------------
+1. Containers
+   URL: https://tailwindui.com/components/application-ui/layout/containers
+2. Cards
+   URL: https://tailwindui.com/components/application-ui/layout/cards
+3. List containers
+   URL: https://tailwindui.com/components/application-ui/layout/list-containers
+4. Media Objects
+   URL: https://tailwindui.com/components/application-ui/layout/media-objects
+5. Dividers
+   URL: https://tailwindui.com/components/application-ui/layout/dividers
+
+Page Examples
+----------------------------------------
+1. Home Screens
+   URL: https://tailwindui.com/components/application-ui/page-examples/home-screens
+2. Detail Screens
+   URL: https://tailwindui.com/components/application-ui/page-examples/detail-screens
+3. Settings Screens
+   URL: https://tailwindui.com/components/application-ui/page-examples/settings-screens
+
+
+Ecommerce
+==================================================
+
+Components
+----------------------------------------
+1. Product Overviews
+   URL: https://tailwindui.com/components/ecommerce/components/product-overviews
+2. Product Lists
+   URL: https://tailwindui.com/components/ecommerce/components/product-lists
+3. Category Previews
+   URL: https://tailwindui.com/components/ecommerce/components/category-previews
+4. Shopping Carts
+   URL: https://tailwindui.com/components/ecommerce/components/shopping-carts
+5. Category Filters
+   URL: https://tailwindui.com/components/ecommerce/components/category-filters
+6. Product Quickviews
+   URL: https://tailwindui.com/components/ecommerce/components/product-quickviews
+7. Product Features
+   URL: https://tailwindui.com/components/ecommerce/components/product-features
+8. Store Navigation
+   URL: https://tailwindui.com/components/ecommerce/components/store-navigation
+9. Promo Sections
+   URL: https://tailwindui.com/components/ecommerce/components/promo-sections
+10. Checkout Forms
+   URL: https://tailwindui.com/components/ecommerce/components/checkout-forms
+11. Reviews
+   URL: https://tailwindui.com/components/ecommerce/components/reviews
+12. Order Summaries
+   URL: https://tailwindui.com/components/ecommerce/components/order-summaries
+13. Order History
+   URL: https://tailwindui.com/components/ecommerce/components/order-history
+14. Incentives
+   URL: https://tailwindui.com/components/ecommerce/components/incentives
+
+Page Examples
+----------------------------------------
+1. Storefront Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/storefront-pages
+2. Product Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/product-pages
+3. Category Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/category-pages
+4. Shopping Cart Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/shopping-cart-pages
+5. Checkout Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/checkout-pages
+6. Order Detail Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/order-detail-pages
+7. Order History Pages
+   URL: https://tailwindui.com/components/ecommerce/page-examples/order-history-pages
+
