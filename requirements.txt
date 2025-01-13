@@ -1,0 +1,50 @@
+# Core Selenium packages
+selenium>=4.16.0
+webdriver-manager>=4.0.1
+
+# Web scraping and parsing
+beautifulsoup4>=4.12.2
+lxml>=4.9.3
+requests>=2.31.0
+
+# Environment and configuration
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+
+# Progress bars and console output
+rich>=13.7.0
+tqdm>=4.66.1
+
+# Data handling and export
+pandas>=2.1.4
+numpy>=1.24.3
+pillow>=10.1.0  # For screenshot handling
+
+# Error handling and retrying
+tenacity>=8.2.3
+retry>=0.9.2
+
+# Async support (optional, for better performance)
+aiohttp>=3.9.1
+asyncio>=3.4.3
+
+# Logging and monitoring
+structlog>=24.1.0
+
+# HTML processing
+html5lib>=1.1
+cssselect>=1.2.0
+
+# Testing
+pytest>=7.4.3
+pytest-selenium>=4.1.0
+
+# Type checking (development)
+mypy>=1.8.0
+types-selenium>=3.141.9
+types-requests>=2.31.0.10
+
+# Code formatting and linting (development)
+black>=23.12.1
+flake8>=7.0.0
+isort>=5.13.2
