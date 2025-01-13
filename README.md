@@ -1,174 +1,113 @@
-# Tailwind UI Scraper
+# 🎨 Tailwind UI Component Scraper
 
-A powerful and efficient scraping tool designed to extract component information and code samples from Tailwind UI's component library. This tool helps developers analyze and learn from Tailwind UI's design patterns and implementation techniques.
+A Python-based web scraper designed to automatically extract and organize components from Tailwind UI. This tool preserves the original site structure and saves React components in a hierarchical folder system.
 
-## ⚠️ Disclaimer
+## ✨ Features
 
-This tool is intended for educational purposes only. Please ensure you comply with Tailwind UI's terms of service and obtain proper licenses for any components you plan to use in production.
+- 🔑 Automatic login to Tailwind UI
+- 🏗️ Maintains original site structure (Marketing, Application UI, Ecommerce)
+- 📥 Extracts React component code
+- 📁 Creates organized folder hierarchy
+- 💾 Saves component code in JSX files
+- 📝 Generates a structured index of all components
 
-## 🚀 Features
+## 📂 Folder Structure
 
-- Automated extraction of component markup and styles
-- Clean output format for easy analysis
-- Support for different component categories (marketing, application UI, ecommerce)
-- Configurable scraping parameters
-- Rate limiting to prevent server overload
-- Export options (JSON, HTML, Markdown)
+The scraper creates a hierarchical folder structure:
+
+```
+components/
+├── Marketing/
+│   ├── Page Sections/
+│   │   ├── Hero Sections/
+│   │   │   ├── SimpleHero.jsx
+│   │   │   └── ...
+│   │   └── ...
+│   └── ...
+├── Application UI/
+└── Ecommerce/
+```
 
 ## 📋 Prerequisites
 
-- Python 3.8 or higher
-- pip (Python package manager)
-- Chrome or Firefox browser
-- ChromeDriver or GeckoDriver (based on your browser choice)
-- A valid Tailwind UI license (for accessing content)
+- 🐍 Python 3.8 or higher
+- 🌐 Chrome browser
+- 🚗 ChromeDriver
+- 🔐 Tailwind UI account
 
-## 🛠️ Installation
+## 🚀 Installation
+
+1. Clone the repository:
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/tailwind-ui-scraper.git
-
-# Navigate to project directory
+git clone <your-repository-url>
 cd tailwind-ui-scraper
+```
 
-# Create and activate virtual environment (optional but recommended)
+2. Create and activate a virtual environment (recommended):
+
+```bash
 python -m venv venv
-source venv/bin/activate  # On Windows, use: venv\Scripts\activate
+# On Windows
+venv\Scripts\activate
+# On macOS/Linux
+source venv/bin/activate
+```
 
-# Install dependencies
+3. Install required packages:
+
+```bash
 pip install -r requirements.txt
 ```
 
-Required Python packages (requirements.txt):
-
-```
-selenium>=4.0.0
-webdriver-manager
-python-dotenv
-beautifulsoup4
-requests
-rich  # for better console output
-```
-
-## 🔧 Configuration
-
-Create a `.env` file in the root directory:
+4. Set up environment variables:
+   Create a `.env` file in the project root:
 
 ```env
 TAILWIND_UI_EMAIL=your-email@example.com
 TAILWIND_UI_PASSWORD=your-password
-BROWSER_TYPE=chrome  # or firefox
-HEADLESS=true  # set to false for visible browser automation
-SCROLL_PAUSE_TIME=2  # pause time between scrolls in seconds
-SCREENSHOT_PATH=./screenshots  # path to save component screenshots
 ```
 
-### WebDriver Setup
+## 🛠️ Usage
 
-The script uses `webdriver-manager` to automatically handle driver installation, but you can also manually set up your preferred WebDriver:
-
-- ChromeDriver: [Download here](https://sites.google.com/chromium.org/driver/)
-- GeckoDriver: [Download here](https://github.com/mozilla/geckodriver/releases)
-
-Make sure the WebDriver is in your system PATH or specify its location in the configuration.
-
-## 📝 Usage
+1. Run the main script:
 
 ```bash
-# Run the scraper with default settings
-python scraper.py
-
-# Scrape specific categories
-python scraper.py --category marketing
-
-# Export to specific format
-python scraper.py --export json
-
-# Run in visible browser mode
-python scraper.py --no-headless
-
-# Specify custom screenshot directory
-python scraper.py --screenshots-dir ./my-screenshots
+python components.py
 ```
 
-### Example Selenium Code
+The script will:
 
-```python
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+1. 🔑 Log in to Tailwind UI
+2. 📄 Generate a structured index in `tailwind_components_structure.txt`
+3. 🔍 Visit each component page
+4. 📥 Extract React component code
+5. 💾 Save components in their respective folders
 
-def setup_driver():
-    options = webdriver.ChromeOptions()
-    if os.getenv('HEADLESS', 'true').lower() == 'true':
-        options.add_argument('--headless')
+## 🔧 Script Structure
 
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
-    return driver
+- 🗺️ `get_component_structure()`: Creates initial site structure map
+- 📝 `save_structure_to_file()`: Saves structure to text file
+- 🌐 `visit_component_urls()`: Visits each component URL
+- 📤 `get_component_code()`: Extracts component code
+- 🔐 `login()`: Handles Tailwind UI authentication
 
-def scrape_component(driver, url):
-    driver.get(url)
+## ⚠️ Error Handling
 
-    # Wait for component to load
-    wait = WebDriverWait(driver, 10)
-    component = wait.until(EC.presence_of_element_located(
-        (By.CSS_SELECTOR, '.preview-component')
-    ))
+The script includes error handling for:
 
-    # Extract component code
-    code_block = driver.find_element(By.CSS_SELECTOR, 'pre code')
-    return code_block.get_attribute('textContent')
-```
+- 🌐 Network timeouts
+- 🔍 Missing elements
+- 🔒 Authentication issues
+- 📁 File system operations
 
-## 🔍 Output Structure
+## 📝 Notes
 
-The scraper generates organized output in your chosen format:
+- ✅ The script respects Tailwind UI's structure
+- 🔄 Components are saved with sanitized filenames
+- 📄 Each component gets its own JSX file
+- 📊 Progress is logged to console
 
-```
-output/
-  ├── components/
-  │   ├── marketing/
-  │   ├── application-ui/
-  │   └── ecommerce/
-  └── metadata.json
-```
+## ⚖️ Disclaimer
 
-## 🤝 Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ⭐ Acknowledgments
-
-- Tailwind UI team for their amazing component library
-- Contributors and maintainers
-- Open source community
-
-## 📮 Contact
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
-
-## 🐛 Known Issues
-
-- Some components may require JavaScript interaction to reveal their code
-- Dynamic loading of components might need additional wait times
-- Certain components might render differently in headless mode
-- CAPTCHAs or authentication challenges may require manual intervention
-- Rate limiting and IP blocking need careful consideration
-
-Please report any bugs or feature requests through the issue tracker.
+This tool is for educational purposes. Ensure you have proper authorization and comply with Tailwind UI's terms of service when using this scraper.
