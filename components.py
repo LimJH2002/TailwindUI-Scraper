@@ -82,24 +82,28 @@ def visit_component_urls(urls_file):
     driver = login(webdriver.Chrome())
     wait = WebDriverWait(driver, 10)
 
+    # Add a set to track unique code snippets
+    seen_code = set()
+    duplicate_count = 0
+    max_duplicates = 3  # Stop after this many consecutive duplicates
+
     try:
         with open(urls_file, "r", encoding="utf-8") as f:
             content = f.read()
             current_main_section = None
             current_subsection = None
             current_component_title = None
+            previous_line = ""
 
-            # Extract URLs using basic string parsing
             lines = content.split("\n")
             for line in lines:
-                if "=" * 10 in line:
-                    # This is a main section
+                if "=" * 10 in line and previous_line:
                     current_main_section = previous_line.strip()
                     os.makedirs(
                         os.path.join("components", current_main_section), exist_ok=True
                     )
-                elif "-" * 10 in line:
-                    # This is a subsection
+
+                elif "-" * 10 in line and previous_line:
                     current_subsection = previous_line.strip()
                     os.makedirs(
                         os.path.join(
@@ -107,8 +111,8 @@ def visit_component_urls(urls_file):
                         ),
                         exist_ok=True,
                     )
+
                 elif line.strip().startswith(tuple("123456789")):
-                    # This is a component title line (starts with a number)
                     current_component_title = line.split(".", 1)[1].strip()
                     os.makedirs(
                         os.path.join(
@@ -119,14 +123,13 @@ def visit_component_urls(urls_file):
                         ),
                         exist_ok=True,
                     )
+
                 elif "URL:" in line:
                     url = line.split("URL:")[1].strip()
                     print(f"\nVisiting: {url}")
 
-                    # Visit the URL
-                    driver.get(url)
-
                     try:
+                        driver.get(url)
                         wait.until(
                             EC.presence_of_element_located(
                                 (By.CSS_SELECTOR, "section[id^='component-']")
@@ -145,43 +148,54 @@ def visit_component_urls(urls_file):
                             title = title_link.text
 
                             print(f"Component ID: {section_id}")
-                            print(f"Title: {title}\n")
+                            print(f"Title: {title}")
 
-                            # Click the code tab first
                             code_tab = section.find_element(
                                 By.XPATH, ".//button[.//span[contains(text(), 'Code')]]"
                             )
                             code_tab.click()
                             time.sleep(1)
 
-                            # Get the code
                             code = get_component_code(driver, section_id)
 
                             if code:
-                                safe_title = re.sub(r"[^a-zA-Z0-9]", "", title)
-                                filepath = os.path.join(
-                                    "components",
-                                    current_main_section,
-                                    current_subsection,
-                                    current_component_title,
-                                    f"{safe_title}.jsx",
-                                )
+                                # Check if we've seen this code before
+                                if code in seen_code:
+                                    duplicate_count += 1
+                                    print(
+                                        f"WARNING: Duplicate code detected ({duplicate_count}/{max_duplicates})"
+                                    )
 
-                                with open(filepath, "w", encoding="utf-8") as f:
-                                    f.write(code)
-                                print(f"Saved to: {filepath}")
+                                    if duplicate_count >= max_duplicates:
+                                        print(
+                                            "\nToo many consecutive duplicates detected. Stopping script."
+                                        )
+                                        return
+                                else:
+                                    duplicate_count = (
+                                        0  # Reset counter when unique code is found
+                                    )
+                                    seen_code.add(code)
 
-                        time.sleep(2)
+                                    safe_title = re.sub(r"[^a-zA-Z0-9]", "", title)
+                                    filepath = os.path.join(
+                                        "components",
+                                        current_main_section,
+                                        current_subsection,
+                                        current_component_title,
+                                        f"{safe_title}.jsx",
+                                    )
 
-                    except TimeoutException:
-                        print("Timeout waiting for component to load")
-                        continue
+                                    with open(filepath, "w", encoding="utf-8") as f:
+                                        f.write(code)
+                                    print(f"Saved to: {filepath}")
+
+                            time.sleep(2)
 
                     except Exception as e:
                         print(f"Error loading component: {str(e)}")
                         continue
 
-                # Store previous line for section detection
                 previous_line = line
 
     except Exception as e:
@@ -192,7 +206,7 @@ def visit_component_urls(urls_file):
 
 def login(driver):
     driver.get("https://tailwindui.com/login")
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 20)
 
     # Wait for content to load
     wait.until(EC.presence_of_element_located((By.TAG_NAME, "form")))
@@ -203,6 +217,7 @@ def login(driver):
     # Fill in the form
     form.find_element(By.ID, "email").send_keys(os.getenv("TAILWIND_UI_EMAIL"))
     form.find_element(By.ID, "password").send_keys(os.getenv("TAILWIND_UI_PASSWORD"))
+    time.sleep(1)  # Wait for 2 seconds before submitting
 
     # Submit the form
     form.submit()
@@ -214,25 +229,42 @@ def login(driver):
 
 def get_component_code(driver, section_id):
     try:
-        # Find the corresponding copy button within the section
-        copy_button = driver.find_element(
-            By.CSS_SELECTOR,
-            f"section[id='{section_id}'] button.group.relative.ml-2.hidden.size-9",
+        # First, locate the specific section
+        section = driver.find_element(By.CSS_SELECTOR, f"section[id='{section_id}']")
+
+        # Find all buttons in the section and look for the one with Code text
+        buttons = section.find_elements(By.TAG_NAME, "button")
+        code_tab = None
+        for button in buttons:
+            if "Code" in button.text:
+                code_tab = button
+                break
+
+        if not code_tab:
+            raise Exception("Code tab not found")
+
+        # Click the code tab
+        driver.execute_script("arguments[0].click();", code_tab)
+        time.sleep(1)  # Wait for code panel to open
+
+        # Wait for code block to be visible
+        wait = WebDriverWait(driver, 10)
+        code_block = wait.until(
+            EC.presence_of_element_located(
+                (By.CSS_SELECTOR, f"section[id='{section_id}'] pre code")
+            )
         )
 
-        # Click copy button
-        copy_button.click()
-        time.sleep(1)
+        # Get the code content
+        code_content = code_block.get_attribute("textContent")
 
-        # Execute JavaScript to get clipboard content
-        clipboard_content = driver.execute_script(
-            "return document.querySelector('pre code').textContent"
-        )
+        if not code_content:
+            raise Exception("No code content found")
 
-        return clipboard_content
+        return code_content.strip()
 
     except Exception as e:
-        print(f"Error getting code: {str(e)}")
+        print(f"Error getting code for section {section_id}: {str(e)}")
         return None
 
 
